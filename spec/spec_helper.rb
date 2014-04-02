@@ -1,6 +1,6 @@
 require 'yaml'
 require 'sequel'
-require 'sequel/jdbc_hive2_adapter'
+require 'sequel-jdbc-hive2-adapter'
 
 class HiveConfig
   class << self
