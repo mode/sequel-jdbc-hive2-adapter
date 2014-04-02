@@ -12,8 +12,10 @@ describe 'Sequel::JDBC::Hive2' do
   end
 
   it 'should select rows from a table' do
+    rows = []
     conn.dataset.fetch_rows("SELECT * FROM cb_clean LIMIT 100") do |row|
-      puts row.inspect
+      rows << row
     end
+    rows.length.should be > 0
   end
 end
