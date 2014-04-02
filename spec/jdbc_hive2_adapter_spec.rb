@@ -1,4 +1,19 @@
 require 'spec_helper'
 
-describe Sequel::Adapters::JDBC::Hive2
-# Sequel.connect('jdbc:hive2://localhost:10000/test').run("SHOW TABLES")
+describe 'Sequel::JDBC::Hive2' do
+  let(:conn) { Sequel.connect(HiveConfig.connection_url) }
+
+  it 'should show tables' do
+    tables = []
+    conn.dataset.fetch_rows("SHOW TABLES") do |row|
+      tables << row[:tab_name]
+    end
+    tables.length.should be > 0
+  end
+
+  it 'should select rows from a table' do
+    conn.dataset.fetch_rows("SELECT * FROM cb_clean LIMIT 100") do |row|
+      puts row.inspect
+    end
+  end
+end

@@ -1,0 +1,7 @@
+adapter: jdbc:hive2
+host: ec2-ip.us-west-2.compute.amazonaws.com
+port: 10000
+ssl: false
+database: default
+username: test
+password: test
